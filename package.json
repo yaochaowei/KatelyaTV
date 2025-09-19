@@ -3,8 +3,11 @@
   "version": "0.7.0-katelya",
   "private": true,
   "scripts": {
-    "dev": "npm run gen:runtime && npm run gen:manifest && next dev -H 0.0.0.0",
-    "build": "npm run gen:runtime && npm run gen:manifest && next build",
+    "dev": "next dev",
+    "build": "next build",
+    "gen:runtime": "node scripts/convert-config.js",
+    "gen:manifest": "node scripts/generate-manifest.js",
+    "pages:build": "pnpm gen:runtime && pnpm gen:manifest && next build && npx @cloudflare/next-on-pages --experimental-minify",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && npm run format",
